@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { PaperProvider } from "react-native-paper";
 
+import BasketScreen from "./src/screens/BasketScreen";
+import LoadingScreen from "./src/screens/LoadingScreen";
+import ReceiptScreen from "./src/screens/ReceiptScreen";
+
+const Stack = createNativeStackNavigator();
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <PaperProvider>
+            <NavigationContainer>
+                <Stack.Navigator screenOptions={{ headerShown: false }}>
+                    <Stack.Screen name="Home" component={BasketScreen} />
+                    <Stack.Screen name="Loading" component={LoadingScreen} />
+                    <Stack.Screen name="Receipt" component={ReceiptScreen} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </PaperProvider>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
