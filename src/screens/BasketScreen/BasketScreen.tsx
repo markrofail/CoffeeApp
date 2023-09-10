@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { PRIMARY_COLOR } from "../../constants";
@@ -6,8 +6,7 @@ import BasketScreenSection from "./BasketScreenSection";
 import { MaterialIcons, MaterialCommunityIcons, AntDesign, Feather } from "@expo/vector-icons";
 import CompleteOrderButton from "./CompleteOrderButton";
 
-const BasketScreen: FC = () => {
-    const navigation = useNavigation();
+export default function BasketScreen({ navigation }: Props) {
     return (
         <View style={styles.container}>
             <View style={styles.screenTitleContainer}>
@@ -111,5 +110,3 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
 });
-
-export default BasketScreen;

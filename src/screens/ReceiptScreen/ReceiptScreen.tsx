@@ -1,9 +1,8 @@
-import React, { FC } from "react";
-import { Text } from "react-native";
+type Props = NativeStackScreenProps<RootStackParamList, "Receipt">;
 
-interface ReceiptScreenProps {}
+export default function ReceiptScreen({ navigation, route }: Props) {
+    const { timestamp } = route.params;
 
-const ReceiptScreen: FC<ReceiptScreenProps> = () => {
     return (
         <>
             <Text>ReceiptScreen</Text>

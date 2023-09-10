@@ -7,10 +7,8 @@ import { PRIMARY_COLOR } from "../../constants";
 const DELAY_CHANGE_TEXT_MS = 2000;
 const DELAY_NEXT_SCREEN_MS = 3000;
 
-interface LoadingScreenProps {}
-
-const LoadingScreen: FC<LoadingScreenProps> = () => {
-    const navigation = useNavigation();
+type Props = NativeStackScreenProps<RootStackParamList, "Loading">;
+export default function LoadingScreen({ navigation }: Props) {
     const [loadingText, setLoadingText] = useState("Processing");
 
     useEffect(() => {
@@ -52,5 +50,3 @@ const styles = StyleSheet.create({
         color: PRIMARY_COLOR,
     },
 });
-
-export default LoadingScreen;
