@@ -31,7 +31,13 @@ export default function App() {
     return (
         <PaperProvider>
             <NavigationContainer>
-                <Stack.Navigator screenOptions={{ headerShown: false }}>
+                <Stack.Navigator
+                    screenOptions={{
+                        headerShown: false,
+                        animationTypeForReplace: "push",
+                        animation: "slide_from_right",
+                    }}
+                >
                     {ROUTES.map(({ name, component }) => (
                         <Stack.Screen key={name} name={name} component={component} />
                     ))}
