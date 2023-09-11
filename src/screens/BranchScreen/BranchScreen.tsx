@@ -1,8 +1,8 @@
 import React from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../routes";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { BACKGROUND_COLOR, FONT_FAMILY, PRIMARY_COLOR, SCREEN_PADDING } from "../../constants";
+import { StyleSheet, View } from "react-native";
+import { BACKGROUND_COLOR, SCREEN_PADDING } from "../../constants";
 import ScreenTitle from "../../components/ScreenTitle";
 import data from "./data.json";
 import BranchCard from "./BranchCard";
@@ -18,14 +18,9 @@ export default function BranchScreen({ navigation }: Props) {
 
             <View style={styles.branchList}>
                 <HorizontalRule />
-                {branches.map(({ branch, address, image }) => (
+                {branches.map((branch) => (
                     <>
-                        <BranchCard
-                            branch={branch}
-                            address={address}
-                            image={image}
-                            onPress={() => navigation.navigate("Shop", { branch })}
-                        />
+                        <BranchCard {...branch} onPress={() => navigation.navigate("Shop", { branch })} />
                         <HorizontalRule />
                     </>
                 ))}

@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MaterialIcons, MaterialCommunityIcons, AntDesign, Feather } from "@expo/vector-icons";
 import { BACKGROUND_COLOR, LIGHT_TEXT, PRIMARY_COLOR, PRIMARY_TEXT, SCREEN_PADDING } from "../../constants";
@@ -12,10 +12,20 @@ import { RootStackParamList } from "../../routes";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Basket">;
 
-export default function BasketScreen({ navigation }: Props) {
+export default function BasketScreen({ navigation, route }: Props) {
+    const { branch, item } = route.params;
+
     return (
         <View style={styles.container}>
-            <ScreenTitle icon={<AntDesign name="left" size={24} color="black" />}>Take Away Order</ScreenTitle>
+            <ScreenTitle
+                icon={
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <AntDesign name="left" size={24} color="black" />
+                    </TouchableOpacity>
+                }
+            >
+                Take Away Order
+            </ScreenTitle>
 
             <ScrollView>
                 <BasketScreenSection
@@ -51,11 +61,11 @@ export default function BasketScreen({ navigation }: Props) {
                     <View style={styles.rowStartEnd}>
                         <View style={styles.row}>
                             <Text style={styles.accentText}>1x </Text>
-                            <Text style={{ ...styles.normalText, marginLeft: 5 }}>Benugo Flat White 8oz</Text>
+                            <Text style={{ ...styles.normalText, marginLeft: 5 }}>{item.item}</Text>
                         </View>
                         <View style={styles.row}>
-                            <DiscountLabel />
-                            <Text style={{ ...styles.accentText, marginRight: 10 }}>£2.35</Text>
+                            <DiscountLabel width={45} />
+                            <Text style={{ ...styles.accentText, marginRight: 10 }}>£{item.price.toFixed(2)}</Text>
                             <Text style={styles.accentText}>£0.00</Text>
                         </View>
                     </View>
@@ -74,14 +84,14 @@ export default function BasketScreen({ navigation }: Props) {
                             <Text style={{ ...styles.accentText, marginLeft: 25 }}>Total</Text>
                         </View>
                         <View style={styles.row}>
-                            <DiscountLabel />
-                            <Text style={{ ...styles.accentText, marginRight: 10 }}>£2.35</Text>
+                            <DiscountLabel width={45} />
+                            <Text style={{ ...styles.accentText, marginRight: 10 }}>£{item.price.toFixed(2)}</Text>
                             <Text style={styles.accentText}>£0.00</Text>
                         </View>
                     </View>
                 </BasketScreenSection>
             </ScrollView>
-            <CompleteOrderButton onPress={() => navigation.navigate("Loading")} />
+            <CompleteOrderButton onPress={() => navigation.navigate("Loading", { branch, item })} />
         </View>
     );
 }

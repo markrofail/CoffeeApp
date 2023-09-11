@@ -1,7 +1,8 @@
-import BranchScreen from "./screens/BranchScreen";
 import BasketScreen from "./screens/BasketScreen";
+import BranchScreen from "./screens/BranchScreen";
 import LoadingScreen from "./screens/LoadingScreen";
 import ReceiptScreen from "./screens/ReceiptScreen";
+import ShopScreen from "./screens/ShopScreen/ShopScreen";
 
 type Route = {
   name: keyof RootStackParamList;
@@ -11,6 +12,7 @@ type Route = {
 
 export const ROUTES: Route[] = [
   { name: "Branch", component: BranchScreen },
+  { name: "Shop", component: ShopScreen },
   { name: "Basket", component: BasketScreen },
   { name: "Loading", component: LoadingScreen },
   { name: "Receipt", component: ReceiptScreen },
@@ -18,8 +20,20 @@ export const ROUTES: Route[] = [
 
 export type RootStackParamList = {
   Branch: undefined;
-  Shop: { branch: string };
-  Basket: undefined;
-  Loading: undefined;
-  Receipt: { formattedTimestamp: string };
+  Shop: {
+    branch: { name: string; location: string };
+  };
+  Basket: {
+    branch: { name: string; location: string };
+    item: { item: string; price: number };
+  };
+  Loading: {
+    branch: { name: string; location: string };
+    item: { item: string; price: number };
+  };
+  Receipt: {
+    branch: { name: string; location: string };
+    item: { item: string; price: number };
+    formattedTimestamp: string;
+  };
 };

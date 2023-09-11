@@ -1,17 +1,20 @@
 {
   "branches": [
     {
-      "branch": "LHR16 Social Bee",
-      "address": "Worship Street, London, EC2A 2FA",
-      "image": "Coffee1.jpg"
-    },
-    {
-      "branch": "LHR16 Benugo",
+      "name": "Benugo",
+      "location": "LHR16",
       "address": "Worship Street, London, EC2A 2FA",
       "image": "Coffee2.png"
     },
     {
-      "branch": "LHR14 Social Bee",
+      "name": "Social Bee",
+      "location": "LHR16",
+      "address": "Worship Street, London, EC2A 2FA",
+      "image": "Coffee1.jpg"
+    },
+    {
+      "name": "Social Bee",
+      "location": "LHR14",
       "address": "60 Holborn Viaduct, London, EC1A 2DE",
       "image": "Coffee3.png"
     }

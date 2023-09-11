@@ -3,12 +3,13 @@ import { BOLD_TEXT, LIGHT_TEXT } from "../../constants";
 
 interface ItemCardProps {
     item: string;
+    image: string;
     kcal: number;
     price: number;
     onPress: () => void;
 }
 
-export default function ItemCard({ item, kcal, price, onPress }: ItemCardProps) {
+export default function ItemCard({ item, image, kcal, price, onPress }: ItemCardProps) {
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={styles.container}>
@@ -17,7 +18,7 @@ export default function ItemCard({ item, kcal, price, onPress }: ItemCardProps) 
                     <Text style={styles.infoText}>{kcal} kcal</Text>
                     <Text style={{ ...styles.infoText, marginTop: 15 }}>£{price}</Text>
                 </View>
-                <Image style={styles.image} source={require("../../../assets/images/Coffee1.jpg")} />
+                <Image style={styles.image} source={require(`../../../assets/images/${image}`)} />
             </View>
         </TouchableOpacity>
     );

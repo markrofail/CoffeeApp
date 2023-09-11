@@ -2,18 +2,21 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { BOLD_TEXT, LIGHT_TEXT } from "../../constants";
 
 interface BranchCardProps {
-    branch: string;
+    name: string;
+    location: string;
     address: string;
     image: string;
     onPress: () => void;
 }
-export default function BranchCard({ branch, address, image, onPress }: BranchCardProps) {
+export default function BranchCard({ name, location, address, image, onPress }: BranchCardProps) {
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={styles.container}>
                 <Image style={styles.image} source={require(`../../../assets/images/${image}`)} />
                 <View style={styles.textContainer}>
-                    <Text style={styles.branchText}>{branch}</Text>
+                    <Text style={styles.branchText}>
+                        {location} {name}
+                    </Text>
                     <Text style={styles.addressText}>{address}</Text>
                 </View>
             </View>

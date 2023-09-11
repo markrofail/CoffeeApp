@@ -10,11 +10,13 @@ import HorizontalRule from "../../components/HorizontalRule";
 type Props = NativeStackScreenProps<RootStackParamList, "Shop">;
 export default function ShopScreen({ navigation, route }: Props) {
     const { branch } = route.params;
-    const items = data.items;
+    const items = data.branches[branch.name as "Benugo" | "Social Bee"];
 
     return (
         <View style={styles.container}>
-            <ScreenTitle>{branch}</ScreenTitle>
+            <ScreenTitle>
+                {branch.location} {branch.name}
+            </ScreenTitle>
 
             <View style={styles.itemsContainer}>
                 {items.map((item) => (

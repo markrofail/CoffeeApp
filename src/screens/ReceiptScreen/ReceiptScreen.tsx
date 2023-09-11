@@ -9,14 +9,16 @@ import { RootStackParamList } from "../../routes";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Receipt">;
 export default function ReceiptScreen({ navigation, route }: Props) {
-    const { formattedTimestamp } = route.params;
+    const { branch, item, formattedTimestamp } = route.params;
 
     return (
         <View style={styles.container}>
             <ScreenTitle>Order #903570 / Q62</ScreenTitle>
 
             <Text style={styles.receiptDate}>{formattedTimestamp}</Text>
-            <Text style={styles.receiptTitle}>LHR16 Benugo</Text>
+            <Text style={styles.receiptTitle}>
+                {branch.location} {branch.name}
+            </Text>
 
             <View style={styles.receiptRow}>
                 <Text style={styles.receiptText}>Item</Text>
@@ -25,10 +27,12 @@ export default function ReceiptScreen({ navigation, route }: Props) {
 
             <HorizontalRule />
             <View style={{ ...styles.receiptRow, ...styles.receiptItem }}>
-                <Text style={{ ...styles.receiptText, color: "black" }}>1 x Benugo Flat White 8oz</Text>
+                <Text style={{ ...styles.receiptText, color: "black" }}>1 x {item.item}</Text>
                 <View style={{ flexDirection: "row" }}>
                     <DiscountLabel width={37.5} />
-                    <Text style={{ ...styles.receiptText, color: "black", fontSize: 12, marginTop: 2.5 }}>£2.35</Text>
+                    <Text style={{ ...styles.receiptText, color: "black", fontSize: 12, marginTop: 2.5 }}>
+                        £{item.price.toFixed(2)}
+                    </Text>
                     <Text style={{ ...styles.receiptText, color: "black", marginLeft: 10 }}>£0.00</Text>
                 </View>
             </View>
@@ -47,7 +51,7 @@ export default function ReceiptScreen({ navigation, route }: Props) {
             </View>
 
             <View style={styles.closeButtonContainer}>
-                <TouchableOpacity style={styles.closeButton} onPress={() => navigation.navigate("Basket")}>
+                <TouchableOpacity style={styles.closeButton} onPress={() => navigation.navigate("Branch")}>
                     <Text style={styles.closeButtonText}>Close the Receipt</Text>
                 </TouchableOpacity>
             </View>
