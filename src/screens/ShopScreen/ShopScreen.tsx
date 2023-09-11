@@ -3,7 +3,7 @@ import { BACKGROUND_COLOR, SCREEN_PADDING } from "../../constants";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../routes";
 import ScreenTitle from "../../components/ScreenTitle";
-import data from "./data.json";
+import data from "./data";
 import ItemCard from "./ItemCard";
 import HorizontalRule from "../../components/HorizontalRule";
 
@@ -21,7 +21,11 @@ export default function ShopScreen({ navigation, route }: Props) {
             <View style={styles.itemsContainer}>
                 {items.map((item) => (
                     <>
-                        <ItemCard {...item} onPress={() => navigation.navigate("Basket", { branch, item })} />
+                        <ItemCard
+                            {...item}
+                            key={item.item}
+                            onPress={() => navigation.navigate("Basket", { branch, item })}
+                        />
                         <HorizontalRule />
                     </>
                 ))}

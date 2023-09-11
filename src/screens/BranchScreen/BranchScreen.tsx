@@ -4,7 +4,7 @@ import { RootStackParamList } from "../../routes";
 import { StyleSheet, View } from "react-native";
 import { BACKGROUND_COLOR, SCREEN_PADDING } from "../../constants";
 import ScreenTitle from "../../components/ScreenTitle";
-import data from "./data.json";
+import data from "./data";
 import BranchCard from "./BranchCard";
 import HorizontalRule from "../../components/HorizontalRule";
 
@@ -20,7 +20,11 @@ export default function BranchScreen({ navigation }: Props) {
                 <HorizontalRule />
                 {branches.map((branch) => (
                     <>
-                        <BranchCard {...branch} onPress={() => navigation.navigate("Shop", { branch })} />
+                        <BranchCard
+                            {...branch}
+                            key={`${branch.location}${branch.name}`}
+                            onPress={() => navigation.navigate("Shop", { branch })}
+                        />
                         <HorizontalRule />
                     </>
                 ))}

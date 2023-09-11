@@ -1,15 +1,15 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, ImageRequireSource, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { BOLD_TEXT, LIGHT_TEXT } from "../../constants";
 
 interface ItemCardProps {
     item: string;
-    image: string;
+    imageSrc: ImageRequireSource;
     kcal: number;
     price: number;
     onPress: () => void;
 }
 
-export default function ItemCard({ item, image, kcal, price, onPress }: ItemCardProps) {
+export default function ItemCard({ item, imageSrc, kcal, price, onPress }: ItemCardProps) {
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={styles.container}>
@@ -18,7 +18,7 @@ export default function ItemCard({ item, image, kcal, price, onPress }: ItemCard
                     <Text style={styles.infoText}>{kcal} kcal</Text>
                     <Text style={{ ...styles.infoText, marginTop: 15 }}>£{price}</Text>
                 </View>
-                <Image style={styles.image} source={require(`../../../assets/images/${image}`)} />
+                <Image style={styles.image} source={imageSrc} />
             </View>
         </TouchableOpacity>
     );
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 
     itemText: {
         ...BOLD_TEXT,
-        fontSize: 20,
+        fontSize: 16,
     },
 
     infoText: {
