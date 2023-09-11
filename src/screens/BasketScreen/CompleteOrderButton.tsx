@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { PRIMARY_COLOR } from "../../constants";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FONT_FAMILY, PRIMARY_COLOR } from "../../constants";
 
 interface CompleteOrderButtonProps {
     onPress?: () => void;
@@ -8,27 +8,50 @@ interface CompleteOrderButtonProps {
 
 const CompleteOrderButton: FC<CompleteOrderButtonProps> = ({ onPress }) => {
     return (
-        <View style={styles.buttonContainer}>
+        <View style={styles.container}>
+            <Text style={styles.voucherText}>Remove Voucher</Text>
+            <View style={styles.shadowLine} />
             <TouchableOpacity style={styles.completeOrder} onPress={onPress}>
-                Complete Order £0.00
+                <Text style={styles.buttonText}>Complete Order £0.00</Text>
             </TouchableOpacity>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    buttonContainer: {
-        shadowColor: "rgba(11, 111, 111, .1)",
-        shadowOffset: { width: 0, height: -5 },
-        shadowOpacity: 0.1,
-        shadowRadius: 10,
+    container: {},
+    voucherText: {
+        textAlign: "center",
+        marginBottom: 15,
     },
+
+    shadowLine: {
+        marginBottom: 10,
+        backgroundColor: "#d9d9d9",
+        shadowColor: "#000000",
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        shadowOffset: {
+            height: 0,
+            width: 2,
+        },
+        height: StyleSheet.hairlineWidth,
+        width: "200%",
+    },
+
     completeOrder: {
+        paddingTop: 16,
+        paddingBottom: 16,
         padding: 20,
         borderRadius: 4,
         fontSize: 16,
-        textAlign: "center",
         backgroundColor: PRIMARY_COLOR,
+    },
+    buttonText: {
+        textAlign: "center",
+        fontSize: 18,
+        fontWeight: "bold",
+        fontFamily: FONT_FAMILY,
         color: "white",
     },
 });

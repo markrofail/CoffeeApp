@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
 import { PRIMARY_COLOR } from "../constants";
 
@@ -7,7 +7,7 @@ export default function HorizontalRule() {
         <View
             style={{
                 width: "100%",
-                opacity: 0.25,
+                opacity: 0.4,
                 borderBottomColor: PRIMARY_COLOR,
                 borderBottomWidth: StyleSheet.hairlineWidth,
             }}
